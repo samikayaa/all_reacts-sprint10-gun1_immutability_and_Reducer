@@ -3,7 +3,7 @@ import React, { useReducer } from 'react';
 import TotalDisplay from './components/TotalDisplay.jsx';
 import CalcButton from './components/CalcButton.jsx';
 import reducer, { initialState } from './store/reducers.jsx';
-import { applyNumber } from './store/actions.jsx';
+import { applyNumber, changeOperation } from './store/actions.jsx';
 
 
 function App() {
@@ -12,6 +12,10 @@ function App() {
 
   const handleApplyNumber = (event) => {
     dispatch(applyNumber(event.target.value));
+  }
+
+  const handleApplyOperation = (event) => {
+    dispatch(changeOperation(event.target.value));
   }
 
   return (
@@ -39,29 +43,29 @@ function App() {
             </div>
             <div className="row">
               <CalcButton value={1} onClick={handleApplyNumber} />
-              <CalcButton value={2} />
-              <CalcButton value={3} />
+              <CalcButton value={2} onClick={handleApplyNumber} />
+              <CalcButton value={3} onClick={handleApplyNumber} />
             </div>
 
             <div className="row">
-              <CalcButton value={4} />
-              <CalcButton value={5} />
-              <CalcButton value={6} />
+              <CalcButton value={4} onClick={handleApplyNumber} />
+              <CalcButton value={5} onClick={handleApplyNumber} />
+              <CalcButton value={6} onClick={handleApplyNumber} />
             </div>
 
             <div className="row">
-              <CalcButton value={7} />
-              <CalcButton value={8} />
-              <CalcButton value={9} />
+              <CalcButton value={7} onClick={handleApplyNumber} />
+              <CalcButton value={8} onClick={handleApplyNumber} />
+              <CalcButton value={9} onClick={handleApplyNumber} />
             </div>
             <div className="row">
-              <CalcButton value={'+'} />
+              <CalcButton value={'+'} onClick={handleApplyOperation} />
               <CalcButton value={0} />
-              <CalcButton value={'-'} />
+              <CalcButton value={'-'} onClick={handleApplyOperation} />
             </div>
             <div className="row">
-              <CalcButton value={'*'} />
-              <CalcButton value={'/'} />
+              <CalcButton value={'*'} onClick={handleApplyOperation} />
+              <CalcButton value={'/'} onClick={handleApplyOperation} />
               <CalcButton value={'CE'} />
             </div>
 
