@@ -1,4 +1,4 @@
-import { APPLY_NUMBER, CHANGE_OPERATION } from './actions.jsx';
+import { APPLY_NUMBER, CHANGE_OPERATION, CLEAR_DISPLAY, RESULT } from './actions.jsx';
 
 export const initialState = {
   total: 0,
@@ -34,6 +34,18 @@ const reducer = (state, action) => {
         ...state,
         operation: action.payload,
       };
+
+    case CLEAR_DISPLAY:
+      return {
+        ...state,
+        total: 0,
+      };
+
+    case RESULT:
+      return {
+        ...state,
+        total: calculateResult(state.total),
+      }
 
     default:
       return state;
