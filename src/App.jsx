@@ -38,7 +38,7 @@ function App() {
               <CalcButton value={'MC'} />
             </div>
             <div className="row">
-              <CalcButton value={1} onClick={handleApplyNumber()} />
+              <CalcButton value={1} onClick={handleApplyNumber} />
               <CalcButton value={2} />
               <CalcButton value={3} />
             </div>
