@@ -21,7 +21,7 @@ const calculateResult = (num1, num2, operation) => {
   }
 };
 
-const reducer = (state, action) => {
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case APPLY_NUMBER:
       return {
