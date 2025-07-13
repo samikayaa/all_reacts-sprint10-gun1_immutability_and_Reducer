@@ -3,7 +3,7 @@ import React, { useReducer } from 'react';
 import TotalDisplay from './components/TotalDisplay.jsx';
 import CalcButton from './components/CalcButton.jsx';
 import reducer, { initialState } from './store/reducers.jsx';
-import { applyNumber, changeOperation, clearDisplay, result } from './store/actions.jsx';
+import { applyNumber, changeOperation, clearDisplay, result, typeToScreen, memoryAdd, memoryRecall, memoryClear } from './store/actions.jsx';
 
 
 function App() {
@@ -11,20 +11,34 @@ function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const handleApplyNumber = (event) => {
-    dispatch(applyNumber(event.target.value));
+    //dispatch(applyNumber(event.target.value)); //bunu kaldırıyoruz.
+    dispatch(typeToScreen(event.target.value))
   }
 
   const handleApplyOperation = (event) => {
     dispatch(changeOperation(event.target.value));
   }
 
-  const handleApplyClear = () => {
+  const handleClearDisplay = () => {
     dispatch(clearDisplay());
   }
 
   const handleResult = () => {
     dispatch(result());
   }
+
+  const handleMemoryAdd = () => {
+    dispatch(memoryAdd());
+  }
+
+  const handleMemoryRecall = () => {
+    dispatch(memoryRecall());
+  }
+
+  const handleMemoryClear = () => {
+    dispatch(memoryClear());
+  }
+
 
   return (
     <div className="App">
@@ -45,9 +59,9 @@ function App() {
               </span>
             </div>
             <div className="row">
-              <CalcButton value={'M+'} />
-              <CalcButton value={'MR'} />
-              <CalcButton value={'MC'} />
+              <CalcButton value={'M+'} onClick={handleMemoryAdd} />
+              <CalcButton value={'MR'} onClick={handleMemoryRecall} />
+              <CalcButton value={'MC'} onClick={handleMemoryClear} />
             </div>
             <div className="row">
               <CalcButton value={1} onClick={handleApplyNumber} />
@@ -68,13 +82,13 @@ function App() {
             </div>
             <div className="row">
               <CalcButton value={'+'} onClick={handleApplyOperation} />
-              <CalcButton value={0} />
+              <CalcButton value={0} onClick={handleApplyNumber} />
               <CalcButton value={'-'} onClick={handleApplyOperation} />
             </div>
             <div className="row">
               <CalcButton value={'*'} onClick={handleApplyOperation} />
               <CalcButton value={'/'} onClick={handleApplyOperation} />
-              <CalcButton value={'CE'} onClick={handleApplyClear} />
+              <CalcButton value={'CE'} onClick={handleClearDisplay} />
             </div>
 
             <div className="row eq_button">
