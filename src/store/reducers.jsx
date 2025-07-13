@@ -1,9 +1,9 @@
-import { APPLY_NUMBER, CHANGE_OPERATION } from '../actions/actions.jsx';
+import { APPLY_NUMBER, CHANGE_OPERATION } from './actions.jsx';
 
 export const initialState = {
-  total: 100,
-  operation: '*',
-  memory: 100,
+  total: 0,
+  operation: '+',
+  memory: 0,
 };
 
 const calculateResult = (num1, num2, operation) => {
@@ -21,7 +21,7 @@ const calculateResult = (num1, num2, operation) => {
   }
 };
 
-const reducer = (state = initialState, action) => {
+const reducer = (state, action) => {
   switch (action.type) {
     case APPLY_NUMBER:
       return {

@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 
 import TotalDisplay from './components/TotalDisplay.jsx';
 import CalcButton from './components/CalcButton.jsx';
+import reducer, { initialState } from './store/reducers.jsx';
+import { applyNumber } from './store/actions.jsx';
+
 
 function App() {
+
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const handleApplyNumber = (event) => {
+    dispatch(applyNumber(event.target.value));
+  }
+
   return (
     <div className="App">
       <nav className="navbar navbar-dark bg-dark">
@@ -13,13 +23,13 @@ function App() {
       <div className="container row mt-5">
         <div className="col-md-12 d-flex justify-content-center">
           <form name="Cal">
-            <TotalDisplay value={'X'} />
+            <TotalDisplay value={state.total} />
             <div className="row details">
               <span id="operation">
-                <b>Operation:</b> X
+                <b>Operation:</b> {state.operation}
               </span>
               <span id="memory">
-                <b>Memory:</b> X
+                <b>Memory:</b> {state.memory}
               </span>
             </div>
             <div className="row">
@@ -28,7 +38,7 @@ function App() {
               <CalcButton value={'MC'} />
             </div>
             <div className="row">
-              <CalcButton value={1} />
+              <CalcButton value={1} onClick={handleApplyNumber()} />
               <CalcButton value={2} />
               <CalcButton value={3} />
             </div>
